@@ -13,7 +13,7 @@ const Post = (props) => {
 };
 
 Post.getInitialProps = async (...rest) => {
-  const [res, ttt] = [fetch('http://127.0.0.1:3000/api/randomQuote'), fetch('http://127.0.0.1:3001/tasks')];
+  const [res, ttt] = [fetch('http://127.0.0.1:3000/api/randomQuote'), fetch('http://127.0.0.1:3001')];
   const [result1, result2] = [await res, await ttt];
   const quote = await result1.json();
   const tttres = await result2.json();

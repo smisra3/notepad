@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1900,7 +1900,7 @@ const PostLink = props => __jsx("li", {
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  href: `/post?title=${props.title}`,
+  href: `/post?url=${props.title}`,
   __source: {
     fileName: _jsxFileName,
     lineNumber: 8
@@ -1933,7 +1933,7 @@ const Index = props => {
       lineNumber: 18
     },
     __self: undefined
-  }, (props.tasks || []).map(item => __jsx(PostLink, {
+  }, (props.result || []).map(item => __jsx(PostLink, {
     key: item._id,
     title: item.description,
     as: item._id,
@@ -1947,14 +1947,14 @@ const Index = props => {
 
 Index.getInitialProps = async () => {
   try {
-    const response = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3001/tasks');
-    const tasks = await response.json();
+    const response = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3001');
+    const result = await response.json();
     return {
-      tasks
+      result
     };
   } catch (err) {
     return {
-      tasks: []
+      result: []
     };
   }
 };
@@ -1963,7 +1963,7 @@ Index.getInitialProps = async () => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

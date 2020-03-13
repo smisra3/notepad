@@ -4428,7 +4428,7 @@ var PostLink = function PostLink(props) {
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/post?title=".concat(props.title),
+    href: "/post?url=".concat(props.title),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 8
@@ -4462,7 +4462,7 @@ var Index = function Index(props) {
       lineNumber: 18
     },
     __self: this
-  }, (props.tasks || []).map(function (item) {
+  }, (props.result || []).map(function (item) {
     return __jsx(PostLink, {
       key: item._id,
       title: item.description,
@@ -4477,14 +4477,14 @@ var Index = function Index(props) {
 };
 
 Index.getInitialProps = function _callee() {
-  var response, tasks;
+  var response, result;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('http://127.0.0.1:3001/tasks'));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('http://127.0.0.1:3001'));
 
         case 3:
           response = _context.sent;
@@ -4492,16 +4492,16 @@ Index.getInitialProps = function _callee() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(response.json());
 
         case 6:
-          tasks = _context.sent;
+          result = _context.sent;
           return _context.abrupt("return", {
-            tasks: tasks
+            result: result
           });
 
         case 10:
           _context.prev = 10;
           _context.t0 = _context["catch"](0);
           return _context.abrupt("return", {
-            tasks: []
+            result: []
           });
 
         case 13:
@@ -4516,7 +4516,7 @@ Index.getInitialProps = function _callee() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!*******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fshubhankar%2FDocuments%2FMY_NOTEPAD%2Fnotepad%2Fpages%2Findex.js ***!
   \*******************************************************************************************************************************************/
@@ -4539,5 +4539,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

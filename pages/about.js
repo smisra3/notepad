@@ -1,6 +1,6 @@
 import Layout from '../components/common/Layout';
 
-export default function Index() {
+const About = () => {
   return (
     <div>
       <Layout>
@@ -8,4 +8,6 @@ export default function Index() {
       </Layout>
     </div>
   );
-}
+};
+
+export default About;
