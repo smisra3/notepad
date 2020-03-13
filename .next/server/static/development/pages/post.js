@@ -123,33 +123,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const Post = props => {
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_1__["useRouter"])();
-  console.log(props);
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 8
     },
     __self: undefined
   }, router.query.title), __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 9
     },
     __self: undefined
   }, props.quote), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 10
     },
     __self: undefined
   }, "This is the blog post content."));
 };
 
 Post.getInitialProps = async (...rest) => {
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3000/api/randomQuote');
-  const ttt = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3001/tasks');
-  const quote = await res.json();
-  const tttres = await ttt.json();
+  const [res, ttt] = [isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3000/api/randomQuote'), isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3001/tasks')];
+  const [result1, result2] = [await res, await ttt];
+  const quote = await result1.json();
+  const tttres = await result2.json();
   return _objectSpread({}, quote, {
     tttres
   });

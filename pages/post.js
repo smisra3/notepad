@@ -3,7 +3,6 @@ import fetch from 'isomorphic-unfetch';
 
 const Post = (props) => {
   const router = useRouter();
-  console.log(props)
   return (
     <>
       <h1>{router.query.title}</h1>
@@ -14,10 +13,10 @@ const Post = (props) => {
 };
 
 Post.getInitialProps = async (...rest) => {
-  const res = await fetch('http://127.0.0.1:3000/api/randomQuote');
-  const ttt = await fetch('http://127.0.0.1:3001/tasks');
-  const quote = await res.json();
-  const tttres = await ttt.json();
+  const [res, ttt] = [fetch('http://127.0.0.1:3000/api/randomQuote'), fetch('http://127.0.0.1:3001/tasks')];
+  const [result1, result2] = [await res, await ttt];
+  const quote = await result1.json();
+  const tttres = await result2.json();
   return {
     ...quote,
     tttres,

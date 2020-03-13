@@ -1927,7 +1927,7 @@ const Index = props => {
       lineNumber: 17
     },
     __self: undefined
-  }, "My Blog"), __jsx("ul", {
+  }, "NOTEPAD"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 18

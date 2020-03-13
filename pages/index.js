@@ -14,7 +14,7 @@ const PostLink = props => (
 const Index = props => {
   return (
     <Layout>
-      <h1>My Blog</h1>
+      <h1>NOTEPAD</h1>
       <ul>
         {(props.tasks || []).map(item => <PostLink key={item._id} title={item.description} as={item._id} />)}
       </ul>

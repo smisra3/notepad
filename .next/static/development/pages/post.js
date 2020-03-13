@@ -3040,59 +3040,60 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var Post = function Post(props) {
   var router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
-  console.log(props);
   return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 8
     },
     __self: this
   }, router.query.title), __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 9
     },
     __self: this
   }, props.quote), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 10
     },
     __self: this
   }, "This is the blog post content."));
 };
 
 Post.getInitialProps = function _callee() {
-  var res, ttt, quote, tttres;
+  var _ref, res, ttt, result1, result2, quote, tttres;
+
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('http://127.0.0.1:3000/api/randomQuote'));
+          _ref = [isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('http://127.0.0.1:3000/api/randomQuote'), isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('http://127.0.0.1:3001/tasks')], res = _ref[0], ttt = _ref[1];
+          _context.next = 3;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res);
 
-        case 2:
-          res = _context.sent;
-          _context.next = 5;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('http://127.0.0.1:3001/tasks'));
+        case 3:
+          result1 = _context.sent;
+          _context.next = 6;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ttt);
 
-        case 5:
-          ttt = _context.sent;
-          _context.next = 8;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
+        case 6:
+          result2 = _context.sent;
+          _context.next = 9;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(result1.json());
 
-        case 8:
+        case 9:
           quote = _context.sent;
-          _context.next = 11;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ttt.json());
+          _context.next = 12;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(result2.json());
 
-        case 11:
+        case 12:
           tttres = _context.sent;
           return _context.abrupt("return", _objectSpread({}, quote, {
             tttres: tttres
           }));
 
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
