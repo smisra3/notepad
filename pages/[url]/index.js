@@ -1,14 +1,14 @@
 import fetch from 'isomorphic-unfetch';
 
 import Layout from '../../components/common/Layout';
-import TextArea from '../../components/common/Textarea';
 import Heading from '../../components/common/Heading';
+import TextHandler from '../../components/common/TextHandler/TextHandler';
 
 const Index = props => {
   return (
     <Layout>
       <Heading />
-      <TextArea description={(props.result || {}).description} />
+      <TextHandler description={(props.result || {}).description} />
     </Layout>
   );
 };
