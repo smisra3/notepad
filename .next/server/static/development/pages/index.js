@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1896,20 +1896,20 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 const PostLink = props => __jsx("li", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 8
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: `/post?url=${props.title}`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 8
+    lineNumber: 9
   },
   __self: undefined
 }, __jsx("a", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 10
   },
   __self: undefined
 }, props.title)));
@@ -1918,19 +1918,19 @@ const Index = props => {
   return __jsx(_components_common_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 17
     },
     __self: undefined
   }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: undefined
   }, "NOTEPAD"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: undefined
   }, (props.result || []).map(item => __jsx(PostLink, {
@@ -1939,31 +1939,32 @@ const Index = props => {
     as: item._id,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: undefined
   }))));
 };
 
-Index.getInitialProps = async () => {
-  try {
-    const response = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('http://127.0.0.1:3001');
-    const result = await response.json();
-    return {
-      result
-    };
-  } catch (err) {
-    return {
-      result: []
-    };
+Index.getInitialProps = async ({
+  res
+}) => {
+  const redirectTo = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+  if (res) {
+    res.writeHead(307, {
+      Location: `/${redirectTo}`
+    });
+    res.end();
   }
+
+  return {};
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
