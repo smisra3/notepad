@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 
 import Layout from '../components/common/Layout';
 
+
 const PostLink = props => (
   <li>
     <Link href={`/post?url=${props.title}`} >
@@ -22,16 +23,15 @@ const Index = props => {
   );
 };
 
-Index.getInitialProps = async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:3001');
-    const result = await response.json();
-    return { result };
-  } catch (err) {
-    return {
-      result: [],
-    };
+Index.getInitialProps = async ({ res }) => {
+  const redirectTo = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15); 
+  if (res) {
+    res.writeHead(307, {
+      Location: `/${redirectTo}`
+    });
+    res.end();
   }
+  return {};
 };
 
 export default Index;
