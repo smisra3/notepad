@@ -1,28 +1,18 @@
 import Link from 'next/link';
 
-const footerStyle = {
-  position: 'fixed',
-  bottom: '10px',
-  display: 'flex',
-  justifyContent: 'space-around',
-  width: '80%',
-  margin: '0 auto',
-};
+import withStyles from '../../../libs/withStyles';
 
-const liStyle = {
-  display: 'flex',
-  flexDirection: 'grow'
-};
+import styles from './Footer.style';
 
 const Footer = props => {
   return (
-    <ul style={footerStyle}>
-      <li style={liStyle}><a href="/">{'New note'}</a></li>
-      <li style={liStyle}><Link href="/about">{'About us'}</Link></li>
-      <li style={liStyle}><Link href="/contact">{'Contact'}</Link></li>
-      <li style={liStyle}><Link href="/terms">{'Terms'}</Link></li>
+    <ul className={props.className}>
+      <li><a href="/">{'New note'}</a></li>
+      <li><Link href="/about">{'About us'}</Link></li>
+      <li><Link href="/contact">{'Contact'}</Link></li>
+      <li><Link href="/terms">{'Terms'}</Link></li>
     </ul>
   );
 };
 
-export default Footer;
+export default withStyles(Footer, styles);

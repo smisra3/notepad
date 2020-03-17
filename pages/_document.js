@@ -1,5 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
+import { ThemeProvider } from 'styled-components';
+
 const bodyStyle = {
   fontFamily: 'sans-serif',
   background: '#e9ecf0',
@@ -21,7 +23,9 @@ class MyDocument extends Document {
       <Html lang='en'>
         <Head />
         <body style={bodyStyle}>
-          <Main />
+          <ThemeProvider theme={{}}>
+            <Main />
+          </ThemeProvider>
           <NextScript />
         </body>
       </Html>
