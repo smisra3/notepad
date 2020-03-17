@@ -3,7 +3,7 @@ import App from 'next/app';
 
 import { initializeStore } from '../../store';
 
-export const enhance = (WrappedComponent, { ssr = true } = {}) => {
+export const enhance = (WrappedComponent, { ssr = false } = {}) => {
 
   const enhancedComponent = ({ initialReduxState, ...props }) => {
     const store = getOrInitializeStore(initialReduxState);

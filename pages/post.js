@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
+import { enhance } from '../HOC/enhance';
 
 const Post = (props) => {
   const router = useRouter();
@@ -23,4 +24,4 @@ Post.getInitialProps = async (...rest) => {
   };
 };
 
-export default Post;
+export default enhance(Post);
