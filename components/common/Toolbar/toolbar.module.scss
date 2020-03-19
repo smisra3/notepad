@@ -1,0 +1,19 @@
+.wrapper {
+  .bold {
+    font-weight: bold;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .common {
+    padding: 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #e2e2e2;
+    border-radius: 2px;
+    color: black;
+  }
+  .active {
+    background-color: lightsteelblue;
+  }
+}
