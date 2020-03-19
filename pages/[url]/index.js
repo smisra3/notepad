@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import Layout from '../../components/common/Layout';
 import Heading from '../../components/common/Heading';
 import TextHandler from '../../components/common/TextHandler/TextHandler';
+import { enhance } from '../../HOC/enhance';
 
 const Index = props => {
   return (
@@ -22,7 +23,9 @@ Index.getInitialProps = async (...rest) => {
   try {
     const response = await fetch(`http://127.0.0.1:3001/${url}`);
     const result = await response.json();
-    return { result: result[0] };
+    return {
+      result: result[0],
+    };
   } catch (err) {
     return {
       result: [],
@@ -30,4 +33,6 @@ Index.getInitialProps = async (...rest) => {
   }
 };
 
-export default Index;
+Index.displayName = 'Root';
+
+export default enhance(Index);

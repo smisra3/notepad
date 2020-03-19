@@ -1,4 +1,5 @@
 import Layout from '../components/common/Layout';
+import { enhance } from '../HOC/enhance';
 
 const Root = props => {
   return (
@@ -19,4 +20,4 @@ Root.getInitialProps = async ({ res }) => {
   return {};
 };
 
-export default Root;
+export default enhance(Root);

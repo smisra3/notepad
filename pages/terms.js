@@ -1,4 +1,5 @@
 import Layout from '../components/common/Layout';
+import { enhance } from '../HOC/enhance';
 
 const About = () => {
   return (
@@ -10,4 +11,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default enhance(About);
