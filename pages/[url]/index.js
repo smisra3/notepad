@@ -4,12 +4,14 @@ import Layout from '../../components/common/Layout';
 import Heading from '../../components/common/Heading';
 import TextHandler from '../../components/common/TextHandler/TextHandler';
 import { enhance } from '../../HOC/enhance';
+import Toolbar from '../../components/common/Toolbar/Toolbar';
 
 const Index = props => {
   return (
     <Layout>
-      <Heading />
-      <TextHandler description={(props.result || {}).description} />
+      {/* <Heading />
+      <TextHandler description={(props.result || {}).description} /> */}
+      <Toolbar />
     </Layout>
   );
 };

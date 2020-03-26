@@ -10,7 +10,9 @@ const initialState = {
     title: 'title 1',
     text: 'dnksdnkasndsa;',
     selected: true
-  }]
+  }],
+  fontFamily: 'Arial',
+  fontSize: 'auto'
 };
 
 const reducer = (state = initialState, action) => {

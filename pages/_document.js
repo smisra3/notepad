@@ -21,7 +21,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Mukta|Open+Sans|PT+Sans|Roboto|Roboto+Mono|Ubuntu&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body style={bodyStyle}>
           <ThemeProvider theme={{}}>
             <Main />
