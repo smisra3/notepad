@@ -46,7 +46,7 @@ const Toolbar = ({ }) => {
         ev.preventDefault();
         const text = ev.clipboardData.getData("text/plain");
         document.execCommand("insertText", false, text);
-        updateDocument(`${document.getElementById('content').innerHTML}${text}`);
+        updateDocument();
       }}
     />
   </Fragment>);

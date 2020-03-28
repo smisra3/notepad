@@ -9,8 +9,8 @@ import Toolbar from '../../components/common/Toolbar/Toolbar';
 const Index = props => {
   return (
     <Layout>
-      {/* <Heading />
-      <TextHandler description={(props.result || {}).description} /> */}
+      <Heading />
+      {/* <TextHandler description={(props.result || {}).description} /> */}
       <Toolbar />
     </Layout>
   );

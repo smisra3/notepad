@@ -9,7 +9,7 @@ const style = {
   margin: '0 auto',
   background: '#fff',
   color: '#000',
-  fontFamily: 'Arial, Helvetica, sans-serif',
+  fontFamily: 'Open Sans',
   border: '0',
   borderTop: '1px solid #e8e8e8',
   borderBottom: '1px solid #e8e8e8',
@@ -17,7 +17,7 @@ const style = {
   outline: 'none',
   padding: '15px',
   lineHeight: '20px',
-  fontSize: '15px',
+  fontSize: 'medium',
   height: '477.2px',
   overflowY: 'scroll'
 };
