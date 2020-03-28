@@ -41,7 +41,14 @@ const Toolbar = ({ }) => {
       if (ev.ctrlKey && ev.keyCode === 66) onClickHandler('bold', setAttr, attr, true);
       if (ev.ctrlKey && ev.keyCode === 73) onClickHandler('italic', setAttr, attr, true);
       if (ev.ctrlKey && ev.keyCode === 85) onClickHandler('underline', setAttr, attr, true);
-    }} />
+    }}
+      onPasteEventHandler={(ev, updateDocument) => {
+        ev.preventDefault();
+        const text = ev.clipboardData.getData("text/plain");
+        document.execCommand("insertText", false, text);
+        updateDocument(`${document.getElementById('content').innerHTML}${text}`);
+      }}
+    />
   </Fragment>);
 };
 

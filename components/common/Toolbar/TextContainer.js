@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { updateDocument } from '../../../store/actions';
+import { debounce, addRemoveEvent, applyStyle } from './utility';
 
 const style = {
   display: 'block',
@@ -17,77 +19,35 @@ const style = {
   lineHeight: '20px',
   fontSize: '15px',
   height: '477.2px',
+  overflowY: 'scroll'
 };
 
-function getCaretPosition(editableDiv) {
-  var caretPos = 0,
-    sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      if (range.commonAncestorContainer.parentNode == editableDiv) {
-        caretPos = range.endOffset;
-      }
-    }
-  } else if (document.selection && document.selection.createRange) {
-    range = document.selection.createRange();
-    if (range.parentElement() == editableDiv) {
-      var tempEl = document.createElement("span");
-      editableDiv.insertBefore(tempEl, editableDiv.firstChild);
-      var tempRange = range.duplicate();
-      tempRange.moveToElementText(tempEl);
-      tempRange.setEndPoint("EndToEnd", range);
-      caretPos = tempRange.text.length;
-    }
+const TextContainer = ({ docs = [], onKeyEventHandler = () => { }, onPasteEventHandler = () => { }, fontFamily, fontSize, updateDocument, selectedId }) => {
+
+  let renderedDoc = docs.find(doc => Boolean(doc.selected));
+  const events = ['input', 'DOMNodeInserted', 'DOMNodeRemoved'];
+
+  const _updateDocumentRedux = () => {
+    debounce(() => {
+      const { innerHTML } = document.getElementById('content');
+      if (innerHTML.length !== renderedDoc.text.length) updateDocument(innerHTML);
+    }, 800)();
   }
-  return caretPos;
-}
 
-function setCaretPosition(childNode, pos) {
-  var range = document.createRange();
-  var sel = window.getSelection();
-  range.setStart(childNode, pos + 1);
-  range.collapse(true);
-  sel.removeAllRanges();
-  sel.addRange(range);
-}
-
-function applyStyle(style) {
-  var sel = window.getSelection();
-  if (sel.rangeCount) {
-    var e = document.createElement('span');
-    e.style = style;
-    e.innerHTML = sel.toString();
-    var range = sel.getRangeAt(0);
-    range.deleteContents();
-    range.insertNode(e);
-    if (!e.innerHTML) {
-      e.innerHTML = ' ';
-      setCaretPosition(e, getCaretPosition(e.parentNode));
-    }
-  }
-}
-
-
-const TextContainer = ({ docs = [], onKeyEventHandler = () => { }, fontFamily, fontSize }) => {
-
-  const renderedDoc = docs.find(doc => Boolean(doc.selected));
-
-  const listener = ev => {
-    console.log(ev);
-  }
+  const listener = () => {
+    _updateDocumentRedux();
+  };
 
   useEffect(() => {
     const elem = document.getElementById('content');
-    if (elem.addEventListener) {
-      elem.addEventListener("input", listener, false);
-      // elem.addEventListener("DOMNodeInserted", listener, false);
-      // elem.addEventListener("DOMNodeRemoved", listener, false);
-      // elem.addEventListener("DOMCharacterDataModified", listener, false);
-    }
+    if (elem.addEventListener) addRemoveEvent(true, elem, listener, events);
+    elem.innerHTML = renderedDoc.text;
   }, []);
 
+  useEffect(() => {
+    const elem = document.getElementById('content');
+    elem.innerHTML = renderedDoc.text;
+  }, [selectedId]);
 
   useEffect(() => applyStyle('font-family:' + fontFamily + ';'), [fontFamily]);
 
@@ -97,18 +57,21 @@ const TextContainer = ({ docs = [], onKeyEventHandler = () => { }, fontFamily, f
     style={style}
     id="content"
     onKeyUp={onKeyEventHandler}
+    onPaste={ev => onPasteEventHandler(ev, _updateDocumentRedux)}
     contentEditable
-    dangerouslySetInnerHTML={{
-      __html: renderedDoc.text
-    }}
   />);
 }
 
 
 const mstp = state => ({
   docs: state.docs,
+  selectedId: state.selectedId,
   fontFamily: state.fontFamily,
   fontSize: state.fontSize
 });
 
-export default connect(mstp)(TextContainer);
+const mdtp = dispatch => ({
+  updateDocument: data => dispatch(updateDocument(data))
+});
+
+export default connect(mstp, mdtp)(TextContainer);

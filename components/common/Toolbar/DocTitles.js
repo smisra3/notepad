@@ -8,7 +8,21 @@ const DocTitles = ({ docs = [], updateState, deleteDocument }) => {
 
   return (<Fragment>
     {
-      docs.map(({ id, title, selected }, index) => (<div className={`${selected ? styles.selected : ''}`}>
+      docs.map(({ id, title, selected }, index) => (<div className={`${selected ? styles.selected : ''} ${styles.titleWrapper}`}
+        onClick={() => {
+          let selectedId = '';
+          const updateDoc = docs.map(doc => {
+            if (doc.id === id) {
+              doc.selected = true;
+              selectedId = doc.id;
+            }
+            else doc.selected = false;
+            return doc;
+          });
+          updateState({ docs: updateDoc, selectedId });
+          setInputId('');
+        }}
+      >
         {
           inputId === id ? <input
             type="text"
@@ -23,16 +37,8 @@ const DocTitles = ({ docs = [], updateState, deleteDocument }) => {
             }}
             onBlur={() => setInputId('')}
           /> :
-            <div className={styles.titleWrapper} onClick={() => {
-              const updateDoc = docs.map(doc => {
-                if (doc.id === id) doc.selected = true;
-                else doc.selected = false;
-                return doc;
-              });
-              updateState({ docs: updateDoc });
-              setInputId('')
-            }}>
-              <span onClick={ev => {
+            <div>
+              <span className={styles.title} onClick={ev => {
                 ev.stopPropagation();
                 setInputId(id);
               }}>{title}</span>

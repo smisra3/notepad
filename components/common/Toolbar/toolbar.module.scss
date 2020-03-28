@@ -44,6 +44,9 @@
   .titleWrapper {
     width: 100px;
     cursor: pointer;
+    .title {
+      cursor: text;
+    }
   }
   .selected {
     background-color: ghostwhite;
